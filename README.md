@@ -92,40 +92,41 @@ Automation Report
 
 ---
 '''
-import clr
 
-clr.AddReference("RevitServices")
-from RevitServices.Persistence import DocumentManager
-from RevitServices.Transactions import TransactionManager
-
-clr.AddReference("RevitAPI")
-from Autodesk.Revit.DB import (
-    FilteredElementCollector,
-    BuiltInCategory,
-    ViewSheet,
-    View,
-    Viewport,
-    XYZ
-)
-
-doc = DocumentManager.Instance.CurrentDBDocument
-excel_data = IN[0]
-
-report = [["Sheet Number", "Sheet Name", "View Name", "X", "Y", "Status", "Message"]]
-
-title_blocks = (
-    FilteredElementCollector(doc)
-    .OfCategory(BuiltInCategory.OST_TitleBlocks)
-    .WhereElementIsElementType()
-    .ToElements()
-)
-
-if len(title_blocks) == 0:
-    report.append(["", "", "", "", "", "ERROR", "No title block type found"])
-    OUT = report
-
-else:
-    title_block_id = title_blocks[0].Id
+    import clr
+    
+    clr.AddReference("RevitServices")
+    from RevitServices.Persistence import DocumentManager
+    from RevitServices.Transactions import TransactionManager
+    
+    clr.AddReference("RevitAPI")
+    from Autodesk.Revit.DB import (
+        FilteredElementCollector,
+        BuiltInCategory,
+        ViewSheet,
+        View,
+        Viewport,
+        XYZ
+    )
+    
+    doc = DocumentManager.Instance.CurrentDBDocument
+    excel_data = IN[0]
+    
+    report = [["Sheet Number", "Sheet Name", "View Name", "X", "Y", "Status", "Message"]]
+    
+    title_blocks = (
+        FilteredElementCollector(doc)
+        .OfCategory(BuiltInCategory.OST_TitleBlocks)
+        .WhereElementIsElementType()
+        .ToElements()
+    )
+    
+    if len(title_blocks) == 0:
+        report.append(["", "", "", "", "", "ERROR", "No title block type found"])
+        OUT = report
+    
+    else:
+        title_block_id = title_blocks[0].Id
 
     def get_existing_sheet(sheet_number):
         sheets = FilteredElementCollector(doc).OfClass(ViewSheet).ToElements()
