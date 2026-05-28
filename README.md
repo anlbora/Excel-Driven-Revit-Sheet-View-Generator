@@ -115,30 +115,6 @@ Automation Report
 
 ---
 
-# Project Structure
-
-```text
-Excel-Driven-Revit-Sheet-View-Generator
-│
-├── dynamo/
-│   └── documentation_generator.dyn
-│
-├── python/
-│   └── documentation_generator.py
-│
-├── excel/
-│   └── sample_input.xlsx
-│
-├── screenshots/
-│   ├── dynamo_graph.png
-│   ├── excel_input.png
-│   ├── generated_sheets.png
-│   ├── section_layout.png
-│   └── report_output.png
-│
-└── README.md
-```
-
 ---
 
 # Future Improvements
