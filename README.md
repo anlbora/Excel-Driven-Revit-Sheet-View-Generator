@@ -115,8 +115,6 @@ Automation Report
 
 ---
 
----
-
 # Future Improvements
 
 Planned future improvements include:
